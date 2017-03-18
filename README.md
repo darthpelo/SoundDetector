@@ -1,6 +1,9 @@
 # SoundDetector
-Ispired by Robotix [video](https://youtu.be/jrK9pda1TiY).
+Ispired by Robotix lesson on [youtube](https://youtu.be/jrK9pda1TiY).
 
+Developed using [platformio](http://platformio.org).
+## Schema
 ![schema](https://github.com/darthpelo/SoundDetector/blob/master/lib/Fritzing/sketch_bb.png)
 
-[Video](https://www.dropbox.com/s/wcr9sqh9e2pxvtm/File%2018-03-2017%2C%2022%2037%2043.mov?dl=0)
+## Demo
+[Video](https://vimeo.com/209011151)
