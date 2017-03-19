@@ -1,4 +1,5 @@
 #include <Arduino.h>
+#include <Helper.h>
 
 int micPin = A0;
 int alertPin = 11;
@@ -9,6 +10,7 @@ int led0 = 3;
 int led1 = 5;
 int led2 = 7;
 
+Helper helper;
 void setup() {
   pinMode(alertPin, OUTPUT);
   pinMode(led0, OUTPUT);
@@ -18,20 +20,12 @@ void setup() {
   Serial.begin(9600);
 }
 
-int diff() {
-  return micValue1-micValue0;
-}
-
-int invertDiff() {
-  return micValue0-micValue1;
-}
-
 bool mayor(int value) {
-  return diff() > value || invertDiff() > value;
+  return helper.diff(micValue0, micValue1) > value || helper.invertDiff(micValue0, micValue1) > value;
 }
 
 bool equal(int value) {
-  return diff() == value || invertDiff() == value;
+  return helper.diff(micValue0, micValue1) == value || helper.invertDiff(micValue0, micValue1) == value;
 }
 
 void loop() {
@@ -41,14 +35,14 @@ void loop() {
   micValue1 = analogRead(micPin);
   Serial.println(micValue1);
 
-  if (equal(1)) {
+  if (equal(2)) {
     digitalWrite(led0, HIGH);
     delay(100);
   } else {
     digitalWrite(led0, LOW);
   }
 
-  if (equal(2)) {
+  if (equal(3)) {
     digitalWrite(led0, HIGH);
     digitalWrite(led1, HIGH);
     delay(100);
@@ -57,7 +51,7 @@ void loop() {
     digitalWrite(led1, LOW);
   }
 
-  if (equal(3)) {
+  if (equal(4)) {
     digitalWrite(led0, HIGH);
     digitalWrite(led1, HIGH);
     digitalWrite(led2, HIGH);
@@ -68,7 +62,7 @@ void loop() {
     digitalWrite(led2, LOW);
   }
 
-  if (mayor(3)) {
+  if (mayor(4)) {
     digitalWrite(led0, HIGH);
     digitalWrite(led1, HIGH);
     digitalWrite(led2, HIGH);
