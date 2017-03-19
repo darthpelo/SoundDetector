@@ -21,11 +21,11 @@ void setup() {
 }
 
 bool mayor(int value) {
-  return helper.diff(micValue0, micValue1) > value || helper.invertDiff(micValue0, micValue1) > value;
+  return helper.diff(micValue0, micValue1) > value;
 }
 
 bool equal(int value) {
-  return helper.diff(micValue0, micValue1) == value || helper.invertDiff(micValue0, micValue1) == value;
+  return helper.diff(micValue0, micValue1) == value;
 }
 
 void loop() {
@@ -35,14 +35,14 @@ void loop() {
   micValue1 = analogRead(micPin);
   Serial.println(micValue1);
 
-  if (equal(2)) {
+  if (equal(1)) {
     digitalWrite(led0, HIGH);
     delay(100);
   } else {
     digitalWrite(led0, LOW);
   }
 
-  if (equal(3)) {
+  if (equal(2)) {
     digitalWrite(led0, HIGH);
     digitalWrite(led1, HIGH);
     delay(100);
@@ -51,7 +51,7 @@ void loop() {
     digitalWrite(led1, LOW);
   }
 
-  if (equal(4)) {
+  if (equal(3)) {
     digitalWrite(led0, HIGH);
     digitalWrite(led1, HIGH);
     digitalWrite(led2, HIGH);
@@ -62,7 +62,7 @@ void loop() {
     digitalWrite(led2, LOW);
   }
 
-  if (mayor(4)) {
+  if (mayor(3)) {
     digitalWrite(led0, HIGH);
     digitalWrite(led1, HIGH);
     digitalWrite(led2, HIGH);
