@@ -5,22 +5,15 @@ Helper::Helper()
 {
 }
 
-int Helper::diff(int first, int second) {
+void Helper::setValues(int value1, int value2) {
+  first = value1;
+  second = value2;
+}
+
+int Helper::diff() {
   return second - first;
 }
 
-int Helper::invertDiff(int first, int second) {
+int Helper::invertDiff() {
   return first-second;
 }
-
-// int invertDiff() {
-//   return micValue0-micValue1;
-// }
-//
-// bool mayor(int value) {
-//   return diff() > value || invertDiff() > value;
-// }
-//
-// bool equal(int value) {
-//   return diff() == value || invertDiff() == value;
-// }

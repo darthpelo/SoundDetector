@@ -11,6 +11,7 @@ int led1 = 5;
 int led2 = 7;
 
 Helper helper;
+
 void setup() {
   pinMode(alertPin, OUTPUT);
   pinMode(led0, OUTPUT);
@@ -21,57 +22,65 @@ void setup() {
 }
 
 bool mayor(int value) {
-  return helper.diff(micValue0, micValue1) > value;
+  return helper.diff() > value;
 }
 
 bool equal(int value) {
-  return helper.diff(micValue0, micValue1) == value;
+  return helper.diff() == value;
+}
+
+void high(int arg[]) {
+  for( unsigned int a = 0; a < sizeof(arg)/sizeof(arg[0]); a = a + 1 ) {
+    digitalWrite(arg[a], HIGH);
+  }
+}
+
+void low(int arg[]) {
+  for( unsigned int a = 0; a < sizeof(arg)/sizeof(arg[0]); a = a + 1 ) {
+    digitalWrite(arg[a], LOW);
+  }
 }
 
 void loop() {
   micValue0 = analogRead(micPin);
-  Serial.println(micValue0);
   delay(1);
   micValue1 = analogRead(micPin);
-  Serial.println(micValue1);
+
+  helper.setValues(micValue0, micValue1);
 
   if (equal(1)) {
-    digitalWrite(led0, HIGH);
+    int leds[] = {led0};
+    high(leds);
     delay(100);
   } else {
-    digitalWrite(led0, LOW);
+    int leds[] = {led0};
+    low(leds);
   }
 
   if (equal(2)) {
-    digitalWrite(led0, HIGH);
-    digitalWrite(led1, HIGH);
+    int leds[] = {led0, led1};
+    high(leds);
     delay(100);
   } else {
-    digitalWrite(led0, LOW);
-    digitalWrite(led1, LOW);
+    int leds[] = {led0, led1};
+    low(leds);
   }
 
   if (equal(3)) {
-    digitalWrite(led0, HIGH);
-    digitalWrite(led1, HIGH);
-    digitalWrite(led2, HIGH);
+    int leds[] = {led0, led1, led2};
+    high(leds);
     delay(100);
   } else {
-    digitalWrite(led0, LOW);
-    digitalWrite(led1, LOW);
-    digitalWrite(led2, LOW);
+    int leds[] = {led0, led1, led2};
+    low(leds);
   }
 
   if (mayor(3)) {
-    digitalWrite(led0, HIGH);
-    digitalWrite(led1, HIGH);
-    digitalWrite(led2, HIGH);
-    digitalWrite(alertPin, HIGH);
+    int leds[] = {led0, led1, led2, alertPin};
+    high(leds);
     delay(100);
   } else {
-    digitalWrite(led0, LOW);
-    digitalWrite(led1, LOW);
-    digitalWrite(led2, LOW);
-    digitalWrite(alertPin, LOW);
+    int leds[] = {led0, led1, led2, alertPin};
+    low(leds);
   }
 }

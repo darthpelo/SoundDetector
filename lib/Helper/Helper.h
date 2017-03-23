@@ -3,21 +3,19 @@
 
 #if defined(ARDUINO) && ARDUINO >= 100
 #include "Arduino.h"
-#else
-#include "WProgram.h"
 #endif
 
 class Helper {
 public:
   Helper();
-  
-  int diff(int first, int second);
+  void setValues(int value1, int value2);
 
-  int invertDiff(int first, int second);
+  int diff();
 
-  // bool mayor(int value);
-  //
-  // bool equal(int value);
+  int invertDiff();
+
+private:
+  int first, second;
 };
 
 #endif // HELPER_H_
