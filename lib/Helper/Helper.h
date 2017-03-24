@@ -8,6 +8,7 @@
 class Helper {
 public:
   Helper();
+  
   void setValues(int value1, int value2);
 
   int diff();
